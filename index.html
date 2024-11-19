@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎀갱서니의 TO DO LIST!🎀</title>
+    <style>
+        div{
+            width: 800px;
+            background-color:#f3d9db;
+            padding: 10px 0;
+            text-align: center;
+        }
+        *ul{list-style: none;}
+        .todolist>li{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 500px;
+            margin: 0 auto;
+            padding: 0 20px;
+            margin-bottom: 10px;
+            border-radius: 20px;
+            background-color: white;
+        }
+        .item{
+            width: 250px;
+            height: 40px;
+            border-radius: 20px;
+            border: 1px none;
+            font-size: 15px;
+        }
+        #contents{
+            padding-left: 20px;
+            margin-left: 15px;
+            margin-right: 20px;
+        }
+        input[type="text"] {
+            width: 500px;
+            height: 50px;
+            background-color: antiquewhite;
+        }
+        button, input[type="button"]{
+            width: 100px;
+            height: 40px;
+            background-color: #cd2b38;
+            border: 1px none;
+            color: aliceblue;
+            border-radius: 20px;
+            font-size: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <h1>📆갱서니의 TODOLIST📆</h1>
+        <label for="contents">항목을 입력하세요.</label>
+        <input for="text" class="item" id="contents">
+        <button onclick="addList()">항목추가</button>
+        <ul class="todolist">
+            <li>
+                <p>📌 끝내주게 맛있는 점심먹기</p>
+                <input type="button" value="항목삭제" onclick="deleteList(this)">
+            </li>
+            <li>
+                <p>📌 열정적으로 코딩하기</p>
+                <input type="button" value="항목삭제" onclick="deleteList(this)">
+            </li>
+        </ul>
+    </div>
+    <script>
+        function addList(){
+            let inputText = document.querySelector(".item").value;
+            let listGroup = document.querySelector(".todolist")
+
+            let listItem = document.createElement("li");
+            let ItemP = document.createElement("p");
+            let ItemBton = document.createElement("input");
+            
+            listGroup.appendChild(listItem);
+            listItem.appendChild(ItemP);
+            ItemP.innerHTML = '📌&nbsp;' + inputText;
+
+            listItem.appendChild(ItemBton);
+            ItemP.style.alignItems= "center";
+            ItemP.style.textAlign= "left";
+            ItemBton.setAttribute("type", "button");
+            ItemBton.setAttribute("value", "항목삭제");
+            ItemBton.addEventListener("click", function(){
+                listItem.remove();
+            });
+        }
+        function deleteList(btn){
+                let listItem = btn.closest("li");
+                listItem.remove();
+            }
+    </script>
+</body>
+</html>
